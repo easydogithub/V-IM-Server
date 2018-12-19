@@ -2,7 +2,7 @@
 https://gitee.com/lele-666/V-IM 客户端在这里
 
 #### 介绍
-V-IM 的Server端
+V-IM 的Server端，代码比较乱，后续会重构，勿喷！！！
 
 #### 软件架构
 SpringBoot、t-io 实现后端服务
