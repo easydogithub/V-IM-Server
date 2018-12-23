@@ -1,29 +1,40 @@
-package com.v.conf;
+package com.v.im.conf;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
+import javax.annotation.Resource;
+
+/**
+ * oauth2.0 配置信息
+ *
+ * @author 乐天
+ * @since 2018-10-07
+ */
 @Configuration
 @EnableAuthorizationServer
-public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    @Autowired
+    @Resource
     AuthenticationManager authenticationManager;
 
-    @Autowired
+    @Resource
     private UserDetailsService userDetailsService;
 
     @Override
@@ -67,6 +78,30 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     }
 
 
+    @Configuration
+    @EnableResourceServer
+    protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
+        @Override
+        public void configure(ResourceServerSecurityConfigurer resources) {
+        }
+
+        @Override
+        public void configure(HttpSecurity http) throws Exception {
+            http
+                    .authorizeRequests()
+                    //配置security访问控制，必须认证过后才可以访问
+                    .antMatchers("/api/**")
+                    .authenticated()
+                    //支持跨域
+                    .and()
+                    .cors()
+                    .and()
+                    .rememberMe()
+                    .and()
+                    .csrf()
+                    .disable();
+        }
+    }
 
 }

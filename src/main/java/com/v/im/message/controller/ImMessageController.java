@@ -5,17 +5,17 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.v.api.entity.Message;
+import com.v.im.api.entity.Message;
 import com.v.im.message.entity.ImMessage;
 import com.v.im.message.service.IImMessageService;
 import com.v.im.user.entity.ImUser;
 import com.v.im.user.service.IImUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.Map;
  * 前端控制器
  * </p>
  *
- * @author v
+ * @author 乐天
  * @since 2018-10-08
  */
 @RestController
@@ -37,11 +37,11 @@ public class ImMessageController {
 
     public static final String FRIEND = "friend";
 
-    @Autowired
+    @Resource
     @Qualifier(value = "iImMessageService")
     private IImMessageService iImMessageService;
 
-    @Autowired
+    @Resource
     @Qualifier(value = "imUserService")
     private IImUserService imUserService;
 

@@ -1,9 +1,6 @@
-package com.v.conf;
+package com.v.im.conf;
 
 
-import com.v.im.user.service.IImUserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,21 +12,21 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 /**
- * @author v
- * Date 2018-04-19
+ * Security 配置文件
+ *
+ * @author 乐天
+ * @since 2018-04-19
  */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    @Qualifier(value = "imUserService")
-    private IImUserService imUserService;
 
-    @Autowired
+    @Resource
     private DataSource dataSource;
 
     @Bean

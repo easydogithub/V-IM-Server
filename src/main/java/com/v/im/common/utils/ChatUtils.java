@@ -1,5 +1,11 @@
-package com.v.utils;
+package com.v.im.common.utils;
 
+/**
+ *  封装的信息类型 UTILS
+ *
+ * @author 乐天
+ * @since 2018-10-07
+ */
 public class ChatUtils {
 
     /**

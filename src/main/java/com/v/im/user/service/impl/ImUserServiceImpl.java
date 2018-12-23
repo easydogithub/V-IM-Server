@@ -8,21 +8,19 @@ import com.v.im.user.service.IImChatGroupUserService;
 import com.v.im.user.service.IImGroupService;
 import com.v.im.user.service.IImGroupUserService;
 import com.v.im.user.service.IImUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
 /**
- * <p>
  * 服务实现类
- * </p>
  *
- * @author v
+ * @author 乐天
  * @since 2018-10-07
  */
 @Service
@@ -35,15 +33,15 @@ public class ImUserServiceImpl extends ServiceImpl<ImUserMapper, ImUser> impleme
     @Value("${v.im.default.chat.id}")
     private String defaultChatId;
 
-    @Autowired
+    @Resource
     @Qualifier(value = "imGroupService")
     private IImGroupService iImGroupService;
 
-    @Autowired
+    @Resource
     @Qualifier(value = "imGroupUserService")
     private IImGroupUserService imGroupUserService;
 
-    @Autowired
+    @Resource
     @Qualifier(value = "imChatGroupUserService")
     private IImChatGroupUserService imChatGroupUserService;
 

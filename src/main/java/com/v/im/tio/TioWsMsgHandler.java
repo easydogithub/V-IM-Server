@@ -1,17 +1,16 @@
-package com.v.tio;
+package com.v.im.tio;
 
-import com.v.api.entity.Message;
-import com.v.api.entity.SendInfo;
+import com.v.im.api.entity.Message;
+import com.v.im.api.entity.SendInfo;
+import com.v.im.common.utils.ChatUtils;
 import com.v.im.message.entity.ImMessage;
 import com.v.im.message.service.IImMessageService;
 import com.v.im.user.entity.ImChatGroup;
 import com.v.im.user.entity.ImUser;
 import com.v.im.user.service.IImUserService;
-import com.v.utils.ChatUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
@@ -28,25 +27,29 @@ import org.tio.websocket.common.WsRequest;
 import org.tio.websocket.common.WsResponse;
 import org.tio.websocket.server.handler.IWsMsgHandler;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.List;
 
 /**
- * @author tanyaowu
- * 2017年6月28日 下午5:32:38
+ * websocket 处理函数
+ *
+ * @author 乐天
+ * @since 2018-10-08
  */
 @Component
-public class ShowcaseWsMsgHandler implements IWsMsgHandler {
-    private static Logger log = LoggerFactory.getLogger(ShowcaseWsMsgHandler.class);
+public class TioWsMsgHandler implements IWsMsgHandler {
 
-    @Autowired
+    private static Logger log = LoggerFactory.getLogger(TioWsMsgHandler.class);
+
+    @Resource
     private DefaultTokenServices defaultTokenServices;
 
-    @Autowired
+    @Resource
     @Qualifier(value = "imUserService")
     private IImUserService imUserService;
 
-    @Autowired
+    @Resource
     @Qualifier(value = "iImMessageService")
     private IImMessageService iImMessageService;
 
@@ -75,7 +78,7 @@ public class ShowcaseWsMsgHandler implements IWsMsgHandler {
             }
         } catch (AuthenticationException | InvalidTokenException e) {
             e.printStackTrace();
-            httpResponse.setStatus(HttpResponseStatus.getHttpStatus(500));
+            httpResponse.setStatus(HttpResponseStatus.getHttpStatus(401));
         }
         return httpResponse;
     }
@@ -124,14 +127,14 @@ public class ShowcaseWsMsgHandler implements IWsMsgHandler {
             SendInfo sendInfo = objectMapper.readValue(text, SendInfo.class);
             //心跳检测包
             if (ChatUtils.MSG_PING.equals(sendInfo.getCode())) {
-                WsResponse wsResponse = WsResponse.fromText(text, ShowcaseServerConfig.CHARSET);
+                WsResponse wsResponse = WsResponse.fromText(text, TioServerConfig.CHARSET);
                 Tio.send(channelContext, wsResponse);
             }
             //真正的消息
             else if (ChatUtils.MSG_MESSAGE.equals(sendInfo.getCode())) {
                 Message message = sendInfo.getMessage();
                 message.setMine(false);
-                WsResponse wsResponse = WsResponse.fromText(objectMapper.writeValueAsString(sendInfo), ShowcaseServerConfig.CHARSET);
+                WsResponse wsResponse = WsResponse.fromText(objectMapper.writeValueAsString(sendInfo), TioServerConfig.CHARSET);
                 //单聊
                 if (ChatUtils.FRIEND.equals(message.getType())) {
                     SetWithLock<ChannelContext> channelContextSetWithLock = Tio.getChannelContextsByUserid(channelContext.groupContext, message.getId());
@@ -185,7 +188,7 @@ public class ShowcaseWsMsgHandler implements IWsMsgHandler {
             SendInfo sendInfo1 = new SendInfo();
             sendInfo1.setCode(ChatUtils.MSG_MESSAGE);
             sendInfo1.setMessage(message);
-            WsResponse wsResponse = WsResponse.fromText(objectMapper.writeValueAsString(sendInfo1), ShowcaseServerConfig.CHARSET);
+            WsResponse wsResponse = WsResponse.fromText(objectMapper.writeValueAsString(sendInfo1), TioServerConfig.CHARSET);
             Tio.sendToUser(channelContext.groupContext, message.getId(), wsResponse);
         }
     }

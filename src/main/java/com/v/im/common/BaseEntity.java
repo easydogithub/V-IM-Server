@@ -1,9 +1,15 @@
-package com.v.common;
+package com.v.im.common;
 
 import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * 基础类别
+ *
+ * @author 乐天
+ * @since 2018-10-07
+ */
 @Data
 public class BaseEntity {
 
@@ -22,7 +28,7 @@ public class BaseEntity {
 
     private String delFlag;
 
-    public void preInsert(){
+    public void preInsert() {
         this.createDate = new Date();
         this.updateDate = new Date();
         this.delFlag = "0";

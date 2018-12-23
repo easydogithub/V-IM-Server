@@ -14,7 +14,12 @@ import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * mybatis-plus 代码生成
+ *
+ * @author 乐天
+ * @since 2018-04-10
+ */
 public class CodeGenerator {
 
     /**

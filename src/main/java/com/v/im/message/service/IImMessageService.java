@@ -10,7 +10,7 @@ import java.util.List;
  * 服务类
  * </p>
  *
- * @author v
+ * @author 乐天
  * @since 2018-10-08
  */
 public interface IImMessageService extends IService<ImMessage> {

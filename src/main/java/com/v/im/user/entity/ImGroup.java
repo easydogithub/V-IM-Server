@@ -2,13 +2,12 @@ package com.v.im.user.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.v.common.BaseEntity;
+import com.v.im.common.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -16,7 +15,7 @@ import java.util.List;
  * 
  * </p>
  *
- * @author v
+ * @author 乐天
  * @since 2018-10-23
  */
 @Data

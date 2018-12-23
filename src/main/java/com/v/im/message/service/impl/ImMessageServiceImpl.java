@@ -2,10 +2,10 @@ package com.v.im.message.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.v.im.common.utils.ChatUtils;
 import com.v.im.message.entity.ImMessage;
 import com.v.im.message.mapper.ImMessageMapper;
 import com.v.im.message.service.IImMessageService;
-import com.v.utils.ChatUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,11 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * <p>
  * 服务实现类
- * </p>
  *
- * @author v
+ * @author 乐天
  * @since 2018-10-08
  */
 @Service

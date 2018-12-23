@@ -8,7 +8,7 @@ import com.v.im.user.entity.ImChatGroupUser;
  * 群 Mapper 接口
  * </p>
  *
- * @author v
+ * @author 乐天
  * @since 2018-10-28
  */
 public interface ImChatGroupUserMapper extends BaseMapper<ImChatGroupUser> {

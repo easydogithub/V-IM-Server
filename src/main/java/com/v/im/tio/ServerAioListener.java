@@ -1,7 +1,4 @@
-/**
- *
- */
-package com.v.tio;
+package com.v.im.tio;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,15 +9,19 @@ import org.tio.websocket.common.WsSessionContext;
 import org.tio.websocket.server.WsServerAioListener;
 
 /**
- * @author tanyaowu
- * 用户根据情况来完成该类的实现
+ * TIO 监控类
+ *
+ * @author 乐天
+ * @since 2018-04-10
  */
-public class ShowcaseServerAioListener extends WsServerAioListener {
-    private static Logger log = LoggerFactory.getLogger(ShowcaseServerAioListener.class);
+public class ServerAioListener extends WsServerAioListener {
 
-    public static final ShowcaseServerAioListener me = new ShowcaseServerAioListener();
+    private static Logger log = LoggerFactory.getLogger(ServerAioListener.class);
 
-    private ShowcaseServerAioListener() {
+    public static ServerAioListener me = new ServerAioListener();
+
+
+    private ServerAioListener() {
 
     }
 
@@ -50,15 +51,8 @@ public class ShowcaseServerAioListener extends WsServerAioListener {
         WsSessionContext wsSessionContext = (WsSessionContext) channelContext.getAttribute();
         log.debug("channelId:", channelContext.getId());
         if (wsSessionContext.isHandshaked()) {
-
             int count = Tio.getAllChannelContexts(channelContext.groupContext).getObj().size();
-
-//			String msg = channelContext.getClientNode().toString() + " 离开了，现在共有【" + count + "】人在线";
-            //用tio-websocket，服务器发送到客户端的Packet都是WsResponse
-//			WsResponse wsResponse = WsResponse.fromText(msg, ShowcaseServerConfig.CHARSET);
-            //群发
-//			Tio.sendToGroup(channelContext.groupContext, Const.GROUP_ID, wsResponse);
-//			Tio.sendToUser(channelContext.groupContext, Const.GROUP_ID, wsResponse);
+            log.info("在线用户数量：" + count);
         }
     }
 

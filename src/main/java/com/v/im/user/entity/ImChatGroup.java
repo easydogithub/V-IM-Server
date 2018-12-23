@@ -1,7 +1,7 @@
 package com.v.im.user.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.v.common.BaseEntity;
+import com.v.im.common.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -13,7 +13,7 @@ import java.io.Serializable;
  * 群
  * </p>
  *
- * @author v
+ * @author 乐天
  * @since 2018-10-28
  */
 @Data

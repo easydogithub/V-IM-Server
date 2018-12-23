@@ -8,7 +8,7 @@ import com.v.im.user.entity.ImGroup;
  *  服务类
  * </p>
  *
- * @author v
+ * @author 乐天
  * @since 2018-10-23
  */
 public interface IImGroupService extends IService<ImGroup> {

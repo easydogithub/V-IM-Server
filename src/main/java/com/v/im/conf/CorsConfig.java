@@ -1,4 +1,4 @@
-package com.v.conf;
+package com.v.im.conf;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * spring 跨域设置
+ *
  * @author 乐天
+ * @since 2018-10-07
  */
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
@@ -21,6 +23,7 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowedOrigins("*")
                 .allowCredentials(true)
                 .allowedMethods("GET", "POST", "DELETE", "PUT", "OPTIONS")
+                //跨域第一次会发送两个请求，这个配置在此时间内是只发送一次
                 .maxAge(3600);
     }
 

@@ -1,14 +1,15 @@
 package com;
 
-import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.Bean;
 
 /**
- * @author admin
+ * springboot 启动类别
+ *
+ * @author 乐天
+ * @since 2018-10-01
  */
 @SpringBootApplication
 @EnableCaching
@@ -17,11 +18,6 @@ public class VServerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(VServerApplication.class, args);
-    }
-
-    @Bean
-    public PaginationInterceptor paginationInterceptor() {
-        return new PaginationInterceptor();
     }
 
 }

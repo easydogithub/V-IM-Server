@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * 群 服务实现类
  * </p>
  *
- * @author v
+ * @author 乐天
  * @since 2018-10-28
  */
 @Service

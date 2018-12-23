@@ -12,7 +12,7 @@ import java.util.List;
  * 服务类
  * </p>
  *
- * @author v-im
+ * @author 乐天-im
  * @since 2018-10-07
  */
 public interface IImUserService extends IService<ImUser> {
