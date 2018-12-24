@@ -1,4 +1,4 @@
-package com.v;
+package com.v.im;
 
 
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;

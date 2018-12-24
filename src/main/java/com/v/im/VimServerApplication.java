@@ -1,4 +1,4 @@
-package com;
+package com.v.im;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -14,10 +14,10 @@ import org.springframework.cache.annotation.EnableCaching;
 @SpringBootApplication
 @EnableCaching
 @MapperScan("com.v.im")
-public class VServerApplication {
+public class VimServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(VServerApplication.class, args);
+        SpringApplication.run(VimServerApplication.class, args);
     }
 
 }

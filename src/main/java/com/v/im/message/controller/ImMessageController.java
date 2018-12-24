@@ -35,7 +35,7 @@ public class ImMessageController {
 
     public static final int PAGE_SIZE = 20;
 
-    public static final String FRIEND = "friend";
+    public static final String FRIEND = "0";
 
     @Resource
     @Qualifier(value = "iImMessageService")
