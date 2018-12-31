@@ -2,6 +2,8 @@ package com.v.im.user.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+
+import com.v.im.common.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -18,7 +20,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("im_user_friend")
-public class ImUserFriend implements Serializable {
+public class ImUserFriend extends BaseEntity implements Serializable  {
 
     private static final long serialVersionUID = 1L;
 

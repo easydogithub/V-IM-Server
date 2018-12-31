@@ -86,6 +86,7 @@ public class ImUserServiceImpl extends ServiceImpl<ImUserMapper, ImUser> impleme
 
             //保存用户好友，默认管理员
             ImUserFriend imUserFriend = new ImUserFriend();
+            imUserFriend.preInsert();
             imUserFriend.setUserId(imUser.getId());
             imUserFriend.setFriendId(adminId);
             imUserFriend.setUserGroupId(imGroup.getId());
