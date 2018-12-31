@@ -35,7 +35,7 @@ public class ImMessageController {
 
     public static final int PAGE_SIZE = 20;
 
-    public static final String FRIEND = "friend";
+    public static final String FRIEND = "0";
 
     @Resource
     @Qualifier(value = "iImMessageService")
@@ -66,12 +66,9 @@ public class ImMessageController {
         page.setCurrent(pageNo);
         page.setDesc("send_time");
         QueryWrapper<ImMessage> wrapper = new QueryWrapper<>();
-
+        System.out.println(FRIEND);
         if(FRIEND.equals(chatType)){
             wrapper.and(wrapper1 -> wrapper1.eq("to_id", chatId)
-                    .eq("from_id", fromId));
-            wrapper.or(wrapper2 -> wrapper2.eq("from_id", chatId)
-                    .eq("to_id", fromId));wrapper.and(wrapper1 -> wrapper1.eq("to_id", chatId)
                     .eq("from_id", fromId));
             wrapper.or(wrapper2 -> wrapper2.eq("from_id", chatId)
                     .eq("to_id", fromId));
