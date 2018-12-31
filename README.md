@@ -1,4 +1,6 @@
-# V-IM-Server
+#### V-0.40
+实现双向用户关系，新增表 im_user_friend，删除表 im_group_user，原先注册的用户已经清除，使用请重新注册。
+####  V-IM-Server
 https://gitee.com/lele-666/V-IM 客户端在这里
 
 #### 介绍
