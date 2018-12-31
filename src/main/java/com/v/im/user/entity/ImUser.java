@@ -42,5 +42,6 @@ public class ImUser  extends BaseEntity implements Serializable {
     @TableField("login_name")
     private String loginName;
 
-
+    @TableField("default_group_id")
+    private String defaultGroupId;
 }

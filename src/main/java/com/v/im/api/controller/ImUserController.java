@@ -3,6 +3,7 @@ package com.v.im.api.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.v.im.user.entity.ImUser;
+import com.v.im.user.service.IImUserFriendService;
 import com.v.im.user.service.IImUserService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,6 +31,11 @@ public class ImUserController {
     @Qualifier(value = "imUserService")
     private IImUserService imUserService;
 
+    @Resource
+    @Qualifier(value = "imUserFriendService")
+    private IImUserFriendService imUserFriendService;
+
+
     /**
      * 用户信息初始化
      *
@@ -43,7 +49,7 @@ public class ImUserController {
         //获取好友信息
         String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
         ImUser user = imUserService.getByLoginName(username);
-        objectMap.put("friends", imUserService.getGroupUsers(user.getId()));
+        objectMap.put("friends", imUserFriendService.getUserFriends(user.getId()));
 
         //获取本人信息
         String host = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();

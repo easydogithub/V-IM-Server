@@ -6,7 +6,7 @@ import com.v.im.user.entity.*;
 import com.v.im.user.mapper.ImUserMapper;
 import com.v.im.user.service.IImChatGroupUserService;
 import com.v.im.user.service.IImGroupService;
-import com.v.im.user.service.IImGroupUserService;
+import com.v.im.user.service.IImUserFriendService;
 import com.v.im.user.service.IImUserService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,9 +37,10 @@ public class ImUserServiceImpl extends ServiceImpl<ImUserMapper, ImUser> impleme
     @Qualifier(value = "imGroupService")
     private IImGroupService iImGroupService;
 
+
     @Resource
-    @Qualifier(value = "imGroupUserService")
-    private IImGroupUserService imGroupUserService;
+    @Qualifier(value = "imUserFriendService")
+    private IImUserFriendService imUserFriendService;
 
     @Resource
     @Qualifier(value = "imChatGroupUserService")
@@ -72,18 +73,28 @@ public class ImUserServiceImpl extends ServiceImpl<ImUserMapper, ImUser> impleme
     public void registerUser(ImUser imUser) {
         try {
             save(imUser);
-
+            //添加默认用户分组 我的好友
             ImGroup imGroup = new ImGroup();
             imGroup.preInsert();
             imGroup.setName("我的好友");
             imGroup.setUserId(imUser.getId());
             iImGroupService.save(imGroup);
 
-            ImGroupUser imGroupUser = new ImGroupUser();
-            imGroupUser.setGroupId(imGroup.getId());
-            imGroupUser.setUserId(adminId);
-            imGroupUserService.save(imGroupUser);
+            //更新默认的用户组
+            imUser.setDefaultGroupId(imGroup.getId());
+            updateById(imUser);
 
+            //保存用户好友，默认管理员
+            ImUserFriend imUserFriend = new ImUserFriend();
+            imUserFriend.setUserId(imUser.getId());
+            imUserFriend.setFriendId(adminId);
+            imUserFriend.setUserGroupId(imGroup.getId());
+            //默认好友的分组
+            ImUser friend = getById(adminId);
+            imUserFriend.setFriendGroupId(friend.getDefaultGroupId());
+            imUserFriendService.save(imUserFriend);
+
+            //添加默认群
             ImChatGroupUser imChatGroupUser = new ImChatGroupUser();
             imChatGroupUser.setUserId(imUser.getId());
             imChatGroupUser.setChatGroupId(defaultChatId);
