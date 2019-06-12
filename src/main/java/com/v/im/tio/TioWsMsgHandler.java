@@ -29,6 +29,7 @@ import org.tio.websocket.server.handler.IWsMsgHandler;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -184,7 +185,7 @@ public class TioWsMsgHandler implements IWsMsgHandler {
             message.setFromid(imMessage.getFromId());
             message.setCid(String.valueOf(imMessage.getId()));
             message.setContent(imMessage.getContent());
-            message.setTimestamp(imMessage.getSendTime());
+            message.setTimestamp(new Date().getTime());
             SendInfo sendInfo1 = new SendInfo();
             sendInfo1.setCode(ChatUtils.MSG_MESSAGE);
             sendInfo1.setMessage(message);
@@ -203,7 +204,7 @@ public class TioWsMsgHandler implements IWsMsgHandler {
         ImMessage imMessage = new ImMessage();
         imMessage.setToId(message.getId());
         imMessage.setFromId(message.getFromid());
-        imMessage.setSendTime(message.getTimestamp());
+        imMessage.setSendTime(new Date().getTime());
         imMessage.setContent(message.getContent());
         imMessage.setReadStatus(readStatus);
         imMessage.setType(message.getType());

@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p>
@@ -90,7 +87,7 @@ public class ImMessageController {
             message.setFromid(imMessage.getFromId());
             message.setCid(String.valueOf(imMessage.getId()));
             message.setContent(imMessage.getContent());
-            message.setTimestamp(imMessage.getSendTime());
+            message.setTimestamp(new Date().getTime());
             messageList.add(message);
         }
         Map<String, Object> map = new HashMap<>();
