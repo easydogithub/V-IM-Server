@@ -72,6 +72,8 @@ public class TioWsMsgHandler implements IWsMsgHandler {
             String userId = imUserService.getByLoginName(user.getUsername()).getId();
             //绑定用户
             Tio.bindUser(channelContext, userId);
+            // 在线用户绑定到上下文 用于发送在线消息
+            WsOnlineContext.bindUser(userId, channelContext);
             //绑定群组
             List<ImChatGroup> groups = imUserService.getChatGroups(userId);
             for (ImChatGroup group : groups) {
@@ -180,12 +182,12 @@ public class TioWsMsgHandler implements IWsMsgHandler {
             message.setMine(false);
             message.setType(imMessage.getType());
             ImUser imUser = imUserService.getById(imMessage.getFromId());
-            message.setAvatar(imUser.getAvatar());
             message.setUsername(imUser.getName());
-            message.setFromid(imMessage.getFromId());
             message.setCid(String.valueOf(imMessage.getId()));
             message.setContent(imMessage.getContent());
-            message.setTimestamp(new Date().getTime());
+            message.setTimestamp(System.currentTimeMillis());
+            message.setFromid(imMessage.getFromId());
+            message.setAvatar(imUser.getAvatar());
             SendInfo sendInfo1 = new SendInfo();
             sendInfo1.setCode(ChatUtils.MSG_MESSAGE);
             sendInfo1.setMessage(message);
@@ -204,7 +206,7 @@ public class TioWsMsgHandler implements IWsMsgHandler {
         ImMessage imMessage = new ImMessage();
         imMessage.setToId(message.getId());
         imMessage.setFromId(message.getFromid());
-        imMessage.setSendTime(new Date().getTime());
+        imMessage.setSendTime(System.currentTimeMillis());
         imMessage.setContent(message.getContent());
         imMessage.setReadStatus(readStatus);
         imMessage.setType(message.getType());

@@ -2,14 +2,19 @@ package com.v.im.api.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.v.im.tio.WsOnlineContext;
 import com.v.im.user.entity.ImUser;
 import com.v.im.user.service.IImUserFriendService;
 import com.v.im.user.service.IImUserService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.tio.core.ChannelContext;
+import org.tio.core.Tio;
+import org.tio.websocket.common.WsPacket;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -74,5 +79,17 @@ public class ImUserController {
     @RequestMapping("chatUserList")
     public List<ImUser> chatUserList(String chatId) {
         return imUserService.getChatUserList(chatId);
+    }
+
+    /**
+     * 发送信息给用户
+     * 注意：目前仅支持发送给在线用户
+     */
+    @PostMapping("sendMsg")
+    public void sendMsg(String userId, String msg){
+        ChannelContext cc = WsOnlineContext.getChannelContextByUser(userId);
+        if(cc!=null && !cc.isClosed){
+            Tio.sendToUser(cc.groupContext, userId, new WsPacket(msg.getBytes()));
+        }
     }
 }
