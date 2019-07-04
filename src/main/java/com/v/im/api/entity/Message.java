@@ -42,7 +42,7 @@ public class Message {
     private String cid;
 
     /**
-     * 是否被人发送
+     * 是否本人发送
      */
     private boolean mine;
 

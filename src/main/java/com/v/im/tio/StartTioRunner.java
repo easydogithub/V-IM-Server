@@ -21,8 +21,11 @@ public class StartTioRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        this.appStarter = new TioWebsocketStarter(TioServerConfig.SERVER_PORT, tioWsMsgHandler);
+        appStarter = new TioWebsocketStarter(TioServerConfig.SERVER_PORT, tioWsMsgHandler);
         appStarter.getWsServerStarter().start();
     }
 
+    public TioWebsocketStarter getAppStarter() {
+        return appStarter;
+    }
 }

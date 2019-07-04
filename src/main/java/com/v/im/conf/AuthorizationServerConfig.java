@@ -46,7 +46,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .authorities("oauth2")
                 .secret(finalSecret)
                 //token 有效期 3600 秒
-                .accessTokenValiditySeconds(3600);
+                .accessTokenValiditySeconds(7200);
     }
 
     @Bean
