@@ -105,7 +105,9 @@ public class ImUserController {
      * @param  msg 消息内容
      */
     @PostMapping("sendMsg")
-    public void sendMsg(String userId, String msg) throws Exception {
+    public void sendMsg(String userId, String msg,HttpServletRequest request) throws Exception {
+        StringBuffer url = request.getRequestURL();
+        String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).toString();
         ServerGroupContext serverGroupContext = startTioRunner.getAppStarter().getWsServerStarter().getServerGroupContext();
         ChannelContext cc = WsOnlineContext.getChannelContextByUser(userId);
         SendInfo sendInfo = new SendInfo();
@@ -117,7 +119,7 @@ public class ImUserController {
         message.setMine(false);
         message.setTimestamp(System.currentTimeMillis());
         message.setType(ChatUtils.FRIEND);
-        message.setAvatar("http://127.0.0.1:8080/img/icon.png");
+        message.setAvatar(tempContextUrl + "/img/icon.png");
         message.setUsername("系统消息");
         sendInfo.setMessage(message);
         if(cc!=null && !cc.isClosed){
