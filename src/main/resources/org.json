@@ -1,0 +1,11 @@
+[
+                {id:'1', pId:'0', name: "总部"},
+				{id:'50b6da69b8dd4c87b0d2d91e41792b94', pId:1, name: "老邱"},
+				{id:'428edf4fcf0242a49198d32845b0b1ec', pId:1, name: "13322211442"},
+                {id:'11', pId:'1', name: "子节点1"},
+				{id:'6da3eb4299294a7280896fb3d6476f1d', pId:'11', name: "13966655333"},
+				{id:'c69787c134b04d6f8127d512c269360f', pId:'11', name: "王五"},
+                {id:'12', pId:'1', name: "子节点2"},
+				{id:'ab1bd7aa01e344c780f904b028de852b', pId:'12', name: "13322211443"},
+				{id:'e9dcc0a3fdb04b73b755fb2be1e64369', pId:'12', name: "13322211444"}
+           ]

@@ -1,5 +1,6 @@
 package com.v.im.user.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.v.im.common.BaseEntity;
 import lombok.Data;
@@ -23,7 +24,7 @@ public class ImChatGroup extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId
+    @TableId(value="id",type=IdType.INPUT)
     private String id;
 
     /**

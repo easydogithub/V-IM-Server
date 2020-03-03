@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.v.im.user.mapper.ImPeopleMapper">
+    <resultMap id="peopleUserMap" type="com.v.im.user.entity.ImPeople">
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="logincode" property="loginCode"/>
+        <result column="type" property="type"/>
+        <result column="isfav" property="isfav"/>
+        <association property="user" javaType="com.v.im.user.entity.ImUser">
+            <result column="u_id" property="id"/>
+            <result column="u_name" property="name"/>
+            <result column="u_avatar" property="avatar"/>
+            <result column="u_sign" property="sign"/>
+            <result column="u_mobile" property="mobile"/>
+            <result column="u_email" property="email"/>
+        </association>
+    </resultMap>
+    <select id="getPeopleByCode" parameterType="string" resultMap="peopleUserMap">
+
+    SELECT dcode as code,dname as name,null as logincode,1 as type,null as isfav
+    ,null as u_id
+    ,null as u_name
+    ,null as u_sign
+    ,null as u_avatar
+    ,null as u_mobile
+    ,null as u_email
+    FROM vim.t_danwei d where d.dcode like CONCAT(#{code},'__')
+     union all
+    SELECT t.dcode as code,t.username as name,t.logname as logincode,2 as type,f.friend_id  as isfav
+    ,u.id AS u_id,
+    u.NAME AS u_name,
+    u.sign AS u_sign,
+    u.avatar AS u_avatar,
+    u.mobile AS u_mobile,
+    u.email AS u_email
+    FROM vim.t_loginuser t left join im_user u on
+    u.mobile = t.logname left join im_user_friend f on f.friend_id = u.id and f.user_id = #{userid}
+    where t.dcode = #{code}
+
+    </select>
+</mapper>

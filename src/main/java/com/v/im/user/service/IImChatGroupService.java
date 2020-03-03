@@ -2,6 +2,7 @@ package com.v.im.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.v.im.user.entity.ImChatGroup;
+import com.v.im.user.entity.ImUser;
 
 /**
  * <p>
@@ -13,4 +14,10 @@ import com.v.im.user.entity.ImChatGroup;
  */
 public interface IImChatGroupService extends IService<ImChatGroup> {
 
+    /**
+     * 根据群名查找群
+     * @param chatName 群名 
+     * @return 群
+     */
+	ImChatGroup getByChatName(String chatName);
 }

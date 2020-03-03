@@ -11,14 +11,18 @@ import com.v.im.tio.StartTioRunner;
 import com.v.im.tio.TioServerConfig;
 import com.v.im.tio.WsOnlineContext;
 import com.v.im.user.entity.ImUser;
+import com.v.im.user.service.IImChatGroupService;
+import com.v.im.user.service.IImChatGroupUserService;
 import com.v.im.user.service.IImUserFriendService;
 import com.v.im.user.service.IImUserService;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.tio.core.ChannelContext;
 import org.tio.core.Tio;
@@ -57,6 +61,14 @@ public class ImUserController {
     @Resource
     @Qualifier(value = "iImMessageService")
     private IImMessageService iImMessageService;
+    
+    @Resource
+    @Qualifier(value = "imChatGroupUserService")
+    private IImChatGroupUserService imChatGroupUserService;
+
+    @Resource
+    @Qualifier(value = "imChatGroupService")
+    private IImChatGroupService imChatGroupService;
 
     /**
      * 用户信息初始化
@@ -140,4 +152,5 @@ public class ImUserController {
         imMessage.setType(message.getType());
         iImMessageService.saveMessage(imMessage);
     }
+  
 }

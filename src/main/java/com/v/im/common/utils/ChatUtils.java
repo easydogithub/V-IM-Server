@@ -36,4 +36,6 @@ public class ChatUtils {
      * 消息
      */
     public static final String MSG_MESSAGE = "2";
+
+    public static final String MSG_GROUP = "3";
 }

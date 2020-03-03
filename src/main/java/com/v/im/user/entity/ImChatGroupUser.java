@@ -7,6 +7,9 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 /**
  * <p>
  * 群
@@ -25,11 +28,13 @@ public class ImChatGroupUser implements Serializable {
     /**
      * 群id
      */
+    @TableId(value = "chat_group_id",type = IdType.INPUT) 
     private String chatGroupId;
 
     /**
      * 用户id
      */
+    @TableId(value = "user_id",type = IdType.INPUT) 
     private String userId;
 
     /**

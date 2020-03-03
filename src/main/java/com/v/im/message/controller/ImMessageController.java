@@ -72,6 +72,10 @@ public class ImMessageController {
         }else {
             wrapper.eq("to_id",chatId);
         }
+        
+        
+        
+        
         IPage<ImMessage> messageIPage = iImMessageService.page(page, wrapper);
 
         List<ImMessage> imMessageList = messageIPage.getRecords();

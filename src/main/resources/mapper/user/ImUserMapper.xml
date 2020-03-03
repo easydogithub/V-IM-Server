@@ -34,7 +34,8 @@
         SELECT
             id,
             name,
-            avatar
+            avatar,
+            master
         FROM im_chat_group
         WHERE id IN (SELECT cg.chat_group_id
                      FROM im_chat_group_user cg

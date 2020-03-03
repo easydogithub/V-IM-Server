@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 /**
  * 基础类别
  *
@@ -18,15 +19,20 @@ public class BaseEntity {
      */
     private String remarks;
 
-    private Date createDate;
+    @TableField(value="create_date")
+    private Date createDate = new Date();
 
+    @TableField(value="create_by")
     private String createBy;
 
-    private Date updateDate;
+    @TableField(value="update_date")
+    private Date updateDate =new Date();
 
+    @TableField(value="update_by")
     private String updateBy;
 
-    private String delFlag;
+    @TableField(value="del_flag")
+    private String delFlag =  "0";
 
     public void preInsert() {
         this.createDate = new Date();

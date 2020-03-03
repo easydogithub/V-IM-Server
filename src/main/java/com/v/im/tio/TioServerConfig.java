@@ -24,7 +24,7 @@ public abstract class TioServerConfig {
     /**
      * 监听端口
      */
-    public static final int SERVER_PORT = 9326;
+    public static final int SERVER_PORT = 7001;
 
     /**
      * 心跳超时时间，单位：毫秒

@@ -156,6 +156,17 @@ public class TioWsMsgHandler implements IWsMsgHandler {
                     saveMessage(message, ChatUtils.READED);
                 }
             }
+            //群操作
+            else if (ChatUtils.MSG_GROUP.equals(sendInfo.getCode())) {
+                Message message = sendInfo.getMessage();
+                message.setMine(false);
+                WsResponse wsResponse = WsResponse.fromText(objectMapper.writeValueAsString(sendInfo), TioServerConfig.CHARSET);
+                //踢人
+                if ("d".equals(message.getType())) {
+                    Tio.sendToGroup(channelContext.groupContext, message.getId(), wsResponse);
+                    Tio.unbindUser(channelContext.groupContext,message.getContent());
+                }
+            }
             //准备就绪，需要发送离线消息
             else if (ChatUtils.MSG_READY.equals(sendInfo.getCode())) {
                 //未读消息

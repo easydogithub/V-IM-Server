@@ -75,6 +75,16 @@ INSERT INTO `im_chat_group_user` VALUES ('e83018ca92cb441aa93484af2deb8456', 'df
 INSERT INTO `im_chat_group_user` VALUES ('e83018ca92cb441aa93484af2deb8456', 'e88d9fd36e5c4896a5a17a21b37325c2', '2018-12-10 15:41:17');
 INSERT INTO `im_chat_group_user` VALUES ('e83018ca92cb441aa93484af2deb8456', 'e9dcc0a3fdb04b73b755fb2be1e64369', '2018-12-31 17:15:06');
 
+
+INSERT INTO `im_chat_group_user` VALUES ('e83018ca92cb441aa93484af2deb8456', '5', '2018-12-19 11:13:51');
+INSERT INTO `im_chat_group_user` VALUES ('e83018ca92cb441aa93484af2deb8456', '6', '2018-12-09 16:33:24');
+INSERT INTO `im_chat_group_user` VALUES ('e83018ca92cb441aa93484af2deb8456', '7', '2018-12-22 19:05:53');
+INSERT INTO `im_chat_group_user` VALUES ('e83018ca92cb441aa93484af2deb8456', '8', '2018-12-27 15:34:35');
+INSERT INTO `im_chat_group_user` VALUES ('e83018ca92cb441aa93484af2deb8456', '9', '2018-12-21 10:39:23');
+INSERT INTO `im_chat_group_user` VALUES ('e83018ca92cb441aa93484af2deb8456', '10', '2018-12-20 19:52:55');
+INSERT INTO `im_chat_group_user` VALUES ('e83018ca92cb441aa93484af2deb8456', '3', '2018-12-30 23:45:40');
+INSERT INTO `im_chat_group_user` VALUES ('e83018ca92cb441aa93484af2deb8456', '4', '2018-12-31 17:19:46');
+
 -- ----------------------------
 -- Table structure for im_group
 -- ----------------------------
